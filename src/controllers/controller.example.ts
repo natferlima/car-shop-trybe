@@ -16,4 +16,5 @@
 //   get route() { return this.$route; }
 
 //  > Seus métodos vão aqui <
+
 // }
