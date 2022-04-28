@@ -7,7 +7,8 @@ const CarRouter = Router();
 const carController = new CarController();
 
 CarRouter
-  .get('/cars', (req, res) => carController.read(req, res));
+  .get('/cars', (req, res) => carController.read(req, res))
+  .post('/cars', (req, res) => carController.create(req, res));
 
 const server = new App();
 server.addRouter(CarRouter);

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import CarService from '../services/CarService';
-import { Car } from '../interfaces/CarInterface';
+import { Car, CarSchema } from '../interfaces/CarInterface';
 
 export default class CarController {
   public service; 
@@ -8,6 +8,20 @@ export default class CarController {
   constructor() {
     this.service = new CarService();
   }
+
+  create = async (
+    req: Request, 
+    res: Response,
+  ): Promise<typeof res | undefined> => {
+    const validation = CarSchema.safeParse(req.body);
+    if (validation.success) {
+      const result = await this.service.create(req.body);
+      return res.status(201).json(result);
+    } 
+    if (!validation.success) {
+      return res.status(400).json(validation.error);
+    }
+  };
 
   read = async (
     _req: Request, 
