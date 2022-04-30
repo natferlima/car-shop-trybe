@@ -32,7 +32,7 @@ export default class CarController {
   };
 
   readOne = async (
-    req: Request<{ id: string }>,
+    req: Request,
     res: Response,
   ): Promise<typeof res> => {
     const { id } = req.params;
